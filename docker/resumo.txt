@@ -1,0 +1,22 @@
+Passo 5: Acessar o Grafana e o Prometheus
+Prometheus: Acesse o Prometheus na URL http://localhost:9090.
+Grafana: Acesse o Grafana na URL http://localhost:3000. O usuário padrão é admin e a senha é admin (a menos que você tenha alterado a senha no docker-compose.yml).
+
+Passo 6: Configurar o Grafana
+Adicionar Prometheus como Fonte de Dados:
+No Grafana, vá para Configuration > Data Sources.
+Clique em Add data source.
+Selecione Prometheus.
+Defina a URL como http://prometheus:9090 e clique em Save & Test.
+Criar Painéis:
+Vá para Create > Dashboard.
+Adicione um novo painel e configure a consulta para visualizar suas métricas do Prometheus.
+
+Passo 7: Verificar e Ajustar
+Verifique os logs: Se houver problemas com os serviços, você pode verificar os logs dos contêineres com docker-compose logs ou docker logs <container_id>.
+Ajuste o arquivo prometheus.yml: Certifique-se de que o Prometheus está configurado para coletar métricas da sua aplicação.
+Resumo
+docker-compose.yml: Define os serviços do Grafana e Prometheus.
+prometheus.yml: Configura o Prometheus para monitorar sua aplicação.
+Docker Compose: Usa o comando docker-compose up -d para iniciar os contêineres.
+Com esses passos, você terá o Grafana e o Prometheus rodando em contêineres Docker, prontos para coletar e visualizar métricas.

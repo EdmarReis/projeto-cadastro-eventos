@@ -1,0 +1,10 @@
+prometheus
+ir ate /opt/homebrew/opt/prometheus/bin
+rodar o script ./prometheus --config.file=prometheus.yml
+o arquivo de configuracao é o prometheus.yml no msm diretorio
+http://localhost:9090
+
+grafana
+brew services start grafana
+http://localhost:3000
+

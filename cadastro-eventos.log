@@ -1,0 +1,45 @@
+07:34:12.210 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+07:34:12.232 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 21.0.2 with PID 26008 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+07:34:12.233 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+07:34:12.691 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+07:34:12.719 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 2 JPA repository interfaces.
+07:34:13.091 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+07:34:13.097 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+07:34:13.099 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+07:34:13.099 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+07:34:13.133 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+07:34:13.134 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 877 ms
+07:34:13.296 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+07:34:13.322 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+07:34:13.339 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+07:34:13.470 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+07:34:13.482 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+07:34:13.678 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a7aa675
+07:34:13.679 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+07:34:13.702 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+07:34:13.702 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+07:34:14.135 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+07:34:14.162 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+07:34:14.402 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+07:34:14.702 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+07:34:14.744 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+07:34:14.753 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path '/'
+07:34:14.767 [main] INFO  com.edmar.cadastro.CadastroEventos - Started CadastroEventos in 2.792 seconds (process running for 3.036)
+07:34:14.769 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Iniciando o processamento de envio de mensagens de pagamento.
+07:34:14.862 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Enviando evento com ID 2
+07:34:15.690 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Enviando evento com ID 3
+07:34:16.030 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Enviando evento com ID 4
+07:34:16.365 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Enviando evento com ID 39
+07:34:16.707 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Enviando evento com ID 5
+07:34:17.038 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Enviando evento com ID 6
+07:34:17.402 [scheduling-1] INFO  c.e.c.a.usecase.EnviaEventoUseCase - Processamento finalizado.
+07:34:48.644 [http-nio-8085-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+07:34:48.645 [http-nio-8085-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+07:34:48.648 [http-nio-8085-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+07:34:48.672 [http-nio-8085-exec-1] INFO  c.e.c.i.g.FinalizaEventoRepositoryGateway - Tentando finalizar o evento com id 39
+07:34:48.723 [http-nio-8085-exec-1] INFO  c.e.c.i.g.FinalizaEventoRepositoryGateway - Evento com id 39 finalizado com sucesso
+07:34:48.738 [http-nio-8085-exec-2] INFO  c.e.c.i.g.FinalizaEventoRepositoryGateway - Tentando finalizar o evento com id 39
+07:34:48.742 [http-nio-8085-exec-2] INFO  c.e.c.i.g.FinalizaEventoRepositoryGateway - Evento com id 39 finalizado com sucesso
+07:35:30.080 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+07:35:30.089 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+07:35:30.095 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
