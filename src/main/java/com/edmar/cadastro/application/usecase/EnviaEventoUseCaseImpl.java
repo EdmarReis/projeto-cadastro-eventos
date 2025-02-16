@@ -19,17 +19,17 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class EnviaEventoUseCase {
+public class EnviaEventoUseCaseImpl {
 
     private final EnviarEventoGateway enviarEventoGateway;
     private final RestTemplate restTemplate;
 
-    public EnviaEventoUseCase(EnviarEventoGateway enviarEventoGateway, RestTemplate restTemplate) {
+    public EnviaEventoUseCaseImpl(EnviarEventoGateway enviarEventoGateway, RestTemplate restTemplate) {
         this.enviarEventoGateway = enviarEventoGateway;
         this.restTemplate = restTemplate;
     }
 
-    @Scheduled(fixedRate = 14400000)
+    @Scheduled(fixedRate = 600000)
     public void enviarEvento() throws JsonProcessingException {
         log.info("[Cadastro-eventos] Iniciando o processamento de envio de mensagens de pagamento.");
 

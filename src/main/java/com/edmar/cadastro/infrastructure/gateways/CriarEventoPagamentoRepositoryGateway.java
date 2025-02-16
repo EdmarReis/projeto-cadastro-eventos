@@ -13,13 +13,13 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 
 @Slf4j
-public class CriarEventoRepositoryGateway implements CriarEventoGateway {
+public class CriarEventoPagamentoRepositoryGateway implements CriarEventoGateway {
 
     private final EventoRepository eventoRepository;
     private final EventoPagamentoEntityMapper eventoPagamentoEntityMapper;
     private final EventoItensRepository eventoItensRepository;
 
-    public CriarEventoRepositoryGateway(EventoRepository eventoRepository, EventoPagamentoEntityMapper eventoPagamentoEntityMapper, EventoItensRepository eventoItensRepository) {
+    public CriarEventoPagamentoRepositoryGateway(EventoRepository eventoRepository, EventoPagamentoEntityMapper eventoPagamentoEntityMapper, EventoItensRepository eventoItensRepository) {
         this.eventoRepository = eventoRepository;
         this.eventoPagamentoEntityMapper = eventoPagamentoEntityMapper;
         this.eventoItensRepository = eventoItensRepository;

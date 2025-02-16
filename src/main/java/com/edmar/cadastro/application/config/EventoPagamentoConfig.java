@@ -4,11 +4,11 @@ import com.edmar.cadastro.application.ports.in.FinalizaEventoUseCase;
 import com.edmar.cadastro.application.ports.out.CriarEventoGateway;
 import com.edmar.cadastro.application.ports.out.EnviarEventoGateway;
 import com.edmar.cadastro.application.ports.out.FinalizaEventoGateway;
-import com.edmar.cadastro.application.usecase.CriarEventoPagamentoUseCase;
-import com.edmar.cadastro.application.usecase.EnviaEventoUseCase;
+import com.edmar.cadastro.application.usecase.CriarEventoPagamentoUseCaseImpl;
+import com.edmar.cadastro.application.usecase.EnviaEventoUseCaseImpl;
 import com.edmar.cadastro.application.usecase.FinalizaEventoUseCaseImpl;
 import com.edmar.cadastro.domain.entity.enviar.EventoPagamentoParaEnvio;
-import com.edmar.cadastro.infrastructure.gateways.CriarEventoRepositoryGateway;
+import com.edmar.cadastro.infrastructure.gateways.CriarEventoPagamentoRepositoryGateway;
 import com.edmar.cadastro.infrastructure.gateways.EnviarEventoRepositoryGateway;
 import com.edmar.cadastro.infrastructure.mapper.EventoItensEntityMapper;
 import com.edmar.cadastro.infrastructure.mapper.EventoPagamentoEntityMapper;
@@ -25,14 +25,14 @@ import java.math.BigDecimal;
 public class EventoPagamentoConfig {
 
     @Bean
-    CriarEventoPagamentoUseCase createEventoCase(CriarEventoGateway criarEventoGateway) {
-        return new CriarEventoPagamentoUseCase(criarEventoGateway);
+    CriarEventoPagamentoUseCaseImpl createEventoCase(CriarEventoGateway criarEventoGateway) {
+        return new CriarEventoPagamentoUseCaseImpl(criarEventoGateway);
     }
 
-    @Bean // novo
-    EnviaEventoUseCase enviaEventoUseCase(EnviarEventoGateway enviarEventoGateway, RestTemplate restTemplate) {
-        return new EnviaEventoUseCase(enviarEventoGateway, restTemplate);
-    }
+    //@Bean // novo
+    //EnviaEventoUseCaseImpl enviaEventoUseCase(EnviarEventoGateway enviarEventoGateway, RestTemplate restTemplate) {
+      //  return new EnviaEventoUseCaseImpl(enviarEventoGateway, restTemplate);
+    //}
 
     @Bean // novo
     EnviarEventoGateway enviarEventoGateway(EventoItensRepository eventoItensRepository,
@@ -60,7 +60,7 @@ public class EventoPagamentoConfig {
     CriarEventoGateway eventoGateway(EventoRepository eventoRepository,
                                      EventoPagamentoEntityMapper eventoPagamentoEntityMapper,
                                      EventoItensRepository eventoItensRepository) {
-        return new CriarEventoRepositoryGateway(eventoRepository, eventoPagamentoEntityMapper,eventoItensRepository);
+        return new CriarEventoPagamentoRepositoryGateway(eventoRepository, eventoPagamentoEntityMapper,eventoItensRepository);
     }
 
     @Bean
