@@ -1,6 +1,6 @@
 package com.edmar.cadastro.interfaces.controller;
 
-import com.edmar.cadastro.application.usecase.CriarEventoPagamentoUseCase;
+import com.edmar.cadastro.application.usecase.CriarEventoPagamentoUseCaseImpl;
 import com.edmar.cadastro.domain.entity.pagamento.EventoPagamento;
 import com.edmar.cadastro.interfaces.dto.CreateEventoPagamentoRequest;
 import com.edmar.cadastro.interfaces.dto.CreateEventoPagamentoResponse;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/criarEventoPagamento")
-public class EventoPagamentoController {
+public class CriarEventoPagamentoController {
 
-    private final CriarEventoPagamentoUseCase criarEventoPagamentoUseCase;
+    private final CriarEventoPagamentoUseCaseImpl criarEventoPagamentoUseCaseImpl;
 
     private final EventoPagamentoDTOMapper mapper;
 
-    public EventoPagamentoController(CriarEventoPagamentoUseCase criarEventoPagamentoUseCase, EventoPagamentoDTOMapper mapper) {
-        this.criarEventoPagamentoUseCase = criarEventoPagamentoUseCase;
+    public CriarEventoPagamentoController(CriarEventoPagamentoUseCaseImpl criarEventoPagamentoUseCaseImpl, EventoPagamentoDTOMapper mapper) {
+        this.criarEventoPagamentoUseCaseImpl = criarEventoPagamentoUseCaseImpl;
         this.mapper = mapper;
     }
 
@@ -28,7 +28,7 @@ public class EventoPagamentoController {
     @PostMapping
     CreateEventoPagamentoResponse create(@Valid @RequestBody CreateEventoPagamentoRequest request) {
         EventoPagamento eventoPagamentoBusinessObj = mapper.toEventoPagamento(request);
-        EventoPagamento eventoPagamento = criarEventoPagamentoUseCase.criarEventoPagamento(eventoPagamentoBusinessObj);
+        EventoPagamento eventoPagamento = criarEventoPagamentoUseCaseImpl.executar(eventoPagamentoBusinessObj);
         return mapper.toResponse(eventoPagamento);
     }
 
