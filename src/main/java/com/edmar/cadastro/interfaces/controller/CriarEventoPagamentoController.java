@@ -1,9 +1,9 @@
 package com.edmar.cadastro.interfaces.controller;
 
-import com.edmar.cadastro.application.usecase.CriarEventoPagamentoUseCaseImpl;
+import com.edmar.cadastro.application.usecase.pagamento.CriarEventoPagamentoUseCaseImpl;
 import com.edmar.cadastro.domain.entity.pagamento.EventoPagamento;
-import com.edmar.cadastro.interfaces.dto.CreateEventoPagamentoRequest;
-import com.edmar.cadastro.interfaces.dto.CreateEventoPagamentoResponse;
+import com.edmar.cadastro.interfaces.dto.pagamento.CreateEventoPagamentoRequest;
+import com.edmar.cadastro.interfaces.dto.pagamento.CreateEventoPagamentoResponse;
 import com.edmar.cadastro.interfaces.mapper.EventoPagamentoDTOMapper;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -2,6 +2,7 @@ package com.edmar.cadastro.domain.entity.itens;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class EventoItens {
 
@@ -10,6 +11,7 @@ public class EventoItens {
     private LocalDate dataEvento;
     private String descricao;
     private BigDecimal valor;
+    private LocalTime horario;
     private String usuario;
     private Boolean finalizado;
     private String controleEvento;
@@ -27,7 +29,20 @@ public class EventoItens {
         this.controleEvento = controleEvento;
     }
 
-    public EventoItens(Long idAgregacao, LocalDate dataEvento, String descricao,
+    public EventoItens(Long idOcorrencia, Long idAgregacao, LocalDate dataEvento,
+                       String descricao, LocalTime horario, String usuario, Boolean finalizado,
+                       String controleEvento) {
+        this.idOcorrencia = idOcorrencia;
+        this.idAgregacao = idAgregacao;
+        this.dataEvento = dataEvento;
+        this.descricao = descricao;
+        this.horario = horario;
+        this.usuario = usuario;
+        this.finalizado = finalizado;
+        this.controleEvento = controleEvento;
+    }
+
+    /**public EventoItens(Long idAgregacao, LocalDate dataEvento, String descricao,
                        BigDecimal valor, String usuario, Boolean finalizado, String controleEvento) {
         this.idAgregacao = idAgregacao;
         this.dataEvento = dataEvento;
@@ -36,7 +51,7 @@ public class EventoItens {
         this.usuario = usuario;
         this.finalizado = finalizado;
         this.controleEvento = controleEvento;
-    }
+    }**/
 
     public Long getIdOcorrencia() {
         return idOcorrencia;
@@ -100,5 +115,13 @@ public class EventoItens {
 
     public void setControleEvento(String controleEvento) {
         this.controleEvento = controleEvento;
+    }
+
+    public LocalTime getHorario() {
+        return horario;
+    }
+
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
     }
 }
