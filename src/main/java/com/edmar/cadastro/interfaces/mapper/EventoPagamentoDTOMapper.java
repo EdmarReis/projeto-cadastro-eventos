@@ -1,8 +1,8 @@
 package com.edmar.cadastro.interfaces.mapper;
 
 import com.edmar.cadastro.domain.entity.pagamento.EventoPagamento;
-import com.edmar.cadastro.interfaces.dto.CreateEventoPagamentoRequest;
-import com.edmar.cadastro.interfaces.dto.CreateEventoPagamentoResponse;
+import com.edmar.cadastro.interfaces.dto.pagamento.CreateEventoPagamentoRequest;
+import com.edmar.cadastro.interfaces.dto.pagamento.CreateEventoPagamentoResponse;
 
 public class EventoPagamentoDTOMapper {
 

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -24,6 +25,7 @@ public class EventoItensEntity {
     private LocalDate dataEvento;
     private String descricao;
     private BigDecimal valor;
+    private LocalTime horario;
     private String usuario;
     private Boolean finalizado;
     private String controleEvento;
@@ -38,4 +40,16 @@ public class EventoItensEntity {
         this.finalizado = finalizado;
         this.controleEvento = controleEvento;
     }
+
+    public EventoItensEntity(Long idAgregacao, LocalDate dataEvento, String descricao,
+                             LocalTime horario, String usuario, Boolean finalizado, String controleEvento) {
+        this.idAgregacao = idAgregacao;
+        this.dataEvento = dataEvento;
+        this.descricao = descricao;
+        this.horario = horario;
+        this.usuario = usuario;
+        this.finalizado = finalizado;
+        this.controleEvento = controleEvento;
+    }
+
 }

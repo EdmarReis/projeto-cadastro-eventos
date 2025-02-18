@@ -2,31 +2,31 @@ package com.edmar.cadastro.infrastructure.gateways;
 
 import com.edmar.cadastro.application.ports.out.EnviarEventoGateway;
 import com.edmar.cadastro.domain.entity.itens.EventoItens;
-import com.edmar.cadastro.infrastructure.mapper.EventoItensEntityMapper;
-import com.edmar.cadastro.infrastructure.persistence.EventoItensRepository;
+import com.edmar.cadastro.infrastructure.mapper.EventoItensPagamentoEntityMapper;
+import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository;
 
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class EnviarEventoRepositoryGateway implements EnviarEventoGateway {
+public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGateway {
 
     private final EventoItensRepository eventoItensRepository;
-    private final EventoItensEntityMapper eventoItensEntityMapper;
+    private final EventoItensPagamentoEntityMapper eventoItensPagamentoEntityMapper;
 
-    public EnviarEventoRepositoryGateway(EventoItensRepository eventoItensRepository, EventoItensEntityMapper eventoItensEntityMapper) {
+    public EnviarEventoPagamentoRepositoryGateway(EventoItensRepository eventoItensRepository, EventoItensPagamentoEntityMapper eventoItensPagamentoEntityMapper) {
         this.eventoItensRepository = eventoItensRepository;
-        this.eventoItensEntityMapper = eventoItensEntityMapper;
+        this.eventoItensPagamentoEntityMapper = eventoItensPagamentoEntityMapper;
     }
 
     @Override
     public Optional<List<EventoItens>> enviarEvento() {
         LocalDate data = LocalDate.now();
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalse(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensEntityMapper::mapToEventoItens) // Converte cada entidade
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte cada entidade
                         .toList() // Coleta em uma nova lista
                 );
     }
@@ -35,9 +35,9 @@ public class EnviarEventoRepositoryGateway implements EnviarEventoGateway {
     public Optional<List<EventoItens>> enviarEventoDiaMaisUm() {
         LocalDate data = LocalDate.now().plusDays(1);
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalse(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensEntityMapper::mapToEventoItens) // Converte cada entidade
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte cada entidade
                         .toList() // Coleta em uma nova lista
                 );
     }
@@ -46,9 +46,9 @@ public class EnviarEventoRepositoryGateway implements EnviarEventoGateway {
     public Optional<List<EventoItens>> enviarEventoDiaMaisDois() {
         LocalDate data = LocalDate.now().plusDays(2);
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalse(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensEntityMapper::mapToEventoItens) // Converte cada entidade
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte cada entidade
                         .toList() // Coleta em uma nova lista
                 );
     }
@@ -57,9 +57,9 @@ public class EnviarEventoRepositoryGateway implements EnviarEventoGateway {
     public Optional<List<EventoItens>> enviarEventoEmAtraso() {
         LocalDate dataAtual = LocalDate.now();
 
-        return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalse(dataAtual)
+        return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNull(dataAtual)
                 .map(lista -> lista.stream()
-                        .map(eventoItensEntityMapper::mapToEventoItens) // Converte para DTO
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte para DTO
                         .sorted(Comparator.comparing(EventoItens::getDataEvento)) // Ordena por data ascendente
                         .toList()
                 );

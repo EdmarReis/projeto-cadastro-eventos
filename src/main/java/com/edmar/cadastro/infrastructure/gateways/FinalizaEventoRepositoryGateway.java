@@ -2,7 +2,7 @@ package com.edmar.cadastro.infrastructure.gateways;
 
 import com.edmar.cadastro.application.ports.out.FinalizaEventoGateway;
 import com.edmar.cadastro.infrastructure.exceptions.EventoNaoEncontradoException;
-import com.edmar.cadastro.infrastructure.persistence.EventoItensRepository;
+import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository;
 import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

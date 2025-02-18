@@ -1,48 +1,50 @@
 package com.edmar.cadastro.infrastructure.gateways;
 
-import com.edmar.cadastro.application.ports.out.CriarEventoPagamentoGateway;
-import com.edmar.cadastro.domain.entity.pagamento.EventoPagamento;
-import com.edmar.cadastro.infrastructure.mapper.EventoPagamentoEntityMapper;
+import com.edmar.cadastro.application.ports.out.CriarEventoCompromissoGateway;
+import com.edmar.cadastro.domain.entity.compromisso.EventoCompromisso;
+import com.edmar.cadastro.infrastructure.mapper.EventoCompromissoEntityMapper;
+import com.edmar.cadastro.infrastructure.persistence.compromisso.EventoCompromissoRepository;
 import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository;
+import com.edmar.cadastro.infrastructure.persistence.compromisso.EventoCompromissoEntity;
 import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensEntity;
-import com.edmar.cadastro.infrastructure.persistence.pagamento.EventoPagamentoEntity;
-import com.edmar.cadastro.infrastructure.persistence.pagamento.EventoPagamentoRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 
 @Slf4j
-public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamentoGateway {
+public class CriarEventoCompromissoRepositoryGateway implements CriarEventoCompromissoGateway {
 
-    private final EventoPagamentoRepository eventoPagamentoRepository;
-    private final EventoPagamentoEntityMapper eventoPagamentoEntityMapper;
+    private final EventoCompromissoRepository eventoCompromissoRepository;
+    private final EventoCompromissoEntityMapper eventoCompromissoEntityMapper;
     private final EventoItensRepository eventoItensRepository;
 
-    public CriarEventoPagamentoRepositoryGateway(EventoPagamentoRepository eventoPagamentoRepository, EventoPagamentoEntityMapper eventoPagamentoEntityMapper, EventoItensRepository eventoItensRepository) {
-        this.eventoPagamentoRepository = eventoPagamentoRepository;
-        this.eventoPagamentoEntityMapper = eventoPagamentoEntityMapper;
+    public CriarEventoCompromissoRepositoryGateway(EventoCompromissoRepository eventoCompromissoRepository,
+                                                   EventoCompromissoEntityMapper eventoCompromissoEntityMapper,
+                                                   EventoItensRepository eventoItensRepository) {
+        this.eventoCompromissoRepository = eventoCompromissoRepository;
+        this.eventoCompromissoEntityMapper = eventoCompromissoEntityMapper;
         this.eventoItensRepository = eventoItensRepository;
     }
 
 
     @Override
-    public EventoPagamento criarEventoPagamento(EventoPagamento eventoPagamento) {
-        log.info("[Cadastro-eventos] Criando novo evento do tipo {} com recorrencia {}.", eventoPagamento.getTipoEvento(),
-                eventoPagamento.getRecorrencia());
-        EventoPagamentoEntity eventoPagamentoEntity = eventoPagamentoEntityMapper.toEntity(eventoPagamento);
-        EventoPagamentoEntity savedObject = eventoPagamentoRepository.save(eventoPagamentoEntity);
+    public EventoCompromisso criarEventoCompromisso(EventoCompromisso eventoCompromisso) {
+        log.info("[Cadastro-eventos] Criando novo evento do tipo {} com recorrencia {}.", eventoCompromisso.getTipoEvento(),
+                eventoCompromisso.getRecorrencia());
+        EventoCompromissoEntity eventoCompromissoEntity = eventoCompromissoEntityMapper.toEntity(eventoCompromisso);
+        EventoCompromissoEntity savedObject = eventoCompromissoRepository.save(eventoCompromissoEntity);
         log.info("[Cadastro-eventos] Evento salvo com id {}.", savedObject.getId());
-        switch (eventoPagamento.getRecorrencia()) {
+        switch (eventoCompromisso.getRecorrencia()) {
             case UNICA:
                 log.info("[Cadastro-eventos] Criando evento unico atrelado ao id {} na tabela de itens", savedObject.getId());
-                EventoItensEntity eventoPagamentoEntityItens = new EventoItensEntity(savedObject.getId(),
-                        savedObject.getData(), savedObject.getDescricao(), savedObject.getValor(),
+                EventoItensEntity eventoCompromissoEntityItens = new EventoItensEntity(savedObject.getId(),
+                        savedObject.getData(), savedObject.getDescricao(), savedObject.getHorario(),
                         savedObject.getUsuario(), false, "Evento 1 de 1");
-                eventoItensRepository.save(eventoPagamentoEntityItens);
+                eventoItensRepository.save(eventoCompromissoEntityItens);
                 log.info("[Cadastro-eventos] Evento unico salvo na tabela de itens com id {}, atrelado ao evento com id {}.",
-                        eventoPagamentoEntityItens.getIdOcorrencia(), eventoPagamentoEntityItens.getIdAgregacao());
-                return eventoPagamentoEntityMapper.toDomain(savedObject);
+                        eventoCompromissoEntityItens.getIdOcorrencia(), eventoCompromissoEntityItens.getIdAgregacao());
+                return eventoCompromissoEntityMapper.toDomain(savedObject);
 
             case MENSAL:
                 log.info("[Cadastro-eventos] Criando eventos mensais atrelados ao id {} na tabela de itens", savedObject.getId());
@@ -72,7 +74,7 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                             savedObject.getId(),
                             dataAtual,
                             savedObject.getDescricao(),
-                            savedObject.getValor(),
+                            savedObject.getHorario(),
                             savedObject.getUsuario(),
                             false,
                             "Evento "+ (i+1) + " de " + savedObject.getQuantidadeEventos()
@@ -82,11 +84,11 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                             eventoItens.getIdOcorrencia(), eventoItens.getIdAgregacao());
                 }
 
-                return eventoPagamentoEntityMapper.toDomain(savedObject);
+                return eventoCompromissoEntityMapper.toDomain(savedObject);
 
             case REPETICAO:
                 System.out.println("Aplicando regras para eventos de recepção...");
-                return eventoPagamentoEntityMapper.toDomain(savedObject);
+                return eventoCompromissoEntityMapper.toDomain(savedObject);
             default:
                 log.error("[Cadastro-eventos] Erro! Tipo de recorrencia inválida.");
                 throw new IllegalArgumentException("Tipo de recorrência inválido.");
