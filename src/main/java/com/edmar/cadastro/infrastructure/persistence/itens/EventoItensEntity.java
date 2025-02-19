@@ -1,5 +1,6 @@
 package com.edmar.cadastro.infrastructure.persistence.itens;
 
+import com.edmar.cadastro.infrastructure.persistence.EventoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,10 @@ public class EventoItensEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOcorrencia;
-    private Long idAgregacao;
+
+    @JoinColumn(name = "id_evento", nullable = false) // Chave estrangeira para EventoEntity
+    private Long idEvento;
+
     private LocalDate dataEvento;
     private String descricao;
     private BigDecimal valor;
@@ -30,9 +34,9 @@ public class EventoItensEntity {
     private Boolean finalizado;
     private String controleEvento;
 
-    public EventoItensEntity(Long idAgregacao, LocalDate dataEvento, String descricao,
+    public EventoItensEntity(Long idEvento, LocalDate dataEvento, String descricao,
                              BigDecimal valor, String usuario, Boolean finalizado, String controleEvento) {
-        this.idAgregacao = idAgregacao;
+        this.idEvento = idEvento;
         this.dataEvento = dataEvento;
         this.descricao = descricao;
         this.valor = valor;
@@ -41,9 +45,9 @@ public class EventoItensEntity {
         this.controleEvento = controleEvento;
     }
 
-    public EventoItensEntity(Long idAgregacao, LocalDate dataEvento, String descricao,
+    public EventoItensEntity(Long idEvento, LocalDate dataEvento, String descricao,
                              LocalTime horario, String usuario, Boolean finalizado, String controleEvento) {
-        this.idAgregacao = idAgregacao;
+        this.idEvento = idEvento;
         this.dataEvento = dataEvento;
         this.descricao = descricao;
         this.horario = horario;

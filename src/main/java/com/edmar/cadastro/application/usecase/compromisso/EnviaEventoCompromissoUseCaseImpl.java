@@ -33,7 +33,7 @@ public class EnviaEventoCompromissoUseCaseImpl {
         this.restTemplate = restTemplate;
     }
 
-    @Scheduled(fixedRate = 300000)
+    @Scheduled(fixedRate = 14400000)
     public void enviarEvento() throws JsonProcessingException {
         log.info("[Cadastro-eventos] Iniciando o processamento de envio de mensagens de compromissos.");
 

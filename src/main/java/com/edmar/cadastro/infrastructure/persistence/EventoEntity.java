@@ -19,7 +19,7 @@ public abstract class EventoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idEvento;
     @NotNull(message = "A descricao não pode ser nulo.")
     @NotBlank(message = "A descricao não pode estar vazio ou em branco.")
     private String descricao;

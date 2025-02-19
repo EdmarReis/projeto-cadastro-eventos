@@ -1,9 +1,7 @@
 package com.edmar.cadastro.infrastructure.mapper;
 
 import com.edmar.cadastro.domain.entity.compromisso.EventoCompromisso;
-import com.edmar.cadastro.domain.entity.pagamento.EventoPagamento;
 import com.edmar.cadastro.infrastructure.persistence.compromisso.EventoCompromissoEntity;
-import com.edmar.cadastro.infrastructure.persistence.pagamento.EventoPagamentoEntity;
 
 public class EventoCompromissoEntityMapper {
 
@@ -16,9 +14,9 @@ public class EventoCompromissoEntityMapper {
 
     public EventoCompromisso toDomain(EventoCompromissoEntity eventoCompromissoEntity) {
         return new EventoCompromisso(eventoCompromissoEntity.getDescricao(), eventoCompromissoEntity.getData(),
-                eventoCompromissoEntity.getRecorrencia(), eventoCompromissoEntity.getId(),
-                eventoCompromissoEntity.getUsuario(), eventoCompromissoEntity.getQuantidadeEventos(),
-                eventoCompromissoEntity.getIntervaloRepeticao(), eventoCompromissoEntity.getTipoEvento(),
+                eventoCompromissoEntity.getRecorrencia(), eventoCompromissoEntity.getIdEvento(),
+                eventoCompromissoEntity.getUsuario(), eventoCompromissoEntity.getIntervaloRepeticao(),
+                eventoCompromissoEntity.getQuantidadeEventos(), eventoCompromissoEntity.getTipoEvento(),
                 eventoCompromissoEntity.getHorario());
     }
 

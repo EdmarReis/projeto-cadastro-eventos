@@ -31,7 +31,7 @@ public class EnviaEventoPagamentoUseCaseImpl {
         this.restTemplate = restTemplate;
     }
 
-    @Scheduled(fixedRate = 300000, initialDelay = 60000)
+    @Scheduled(fixedRate = 14400000, initialDelay = 300000)
     public void enviarEvento() throws JsonProcessingException {
         log.info("[Cadastro-eventos] Iniciando o processamento de envio de mensagens de pagamento.");
 

@@ -32,20 +32,20 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                 eventoPagamento.getRecorrencia());
         EventoPagamentoEntity eventoPagamentoEntity = eventoPagamentoEntityMapper.toEntity(eventoPagamento);
         EventoPagamentoEntity savedObject = eventoPagamentoRepository.save(eventoPagamentoEntity);
-        log.info("[Cadastro-eventos] Evento salvo com id {}.", savedObject.getId());
+        log.info("[Cadastro-eventos] Evento salvo com id {}.", savedObject.getIdEvento());
         switch (eventoPagamento.getRecorrencia()) {
             case UNICA:
-                log.info("[Cadastro-eventos] Criando evento unico atrelado ao id {} na tabela de itens", savedObject.getId());
-                EventoItensEntity eventoPagamentoEntityItens = new EventoItensEntity(savedObject.getId(),
+                log.info("[Cadastro-eventos] Criando evento unico atrelado ao id {} na tabela de itens", savedObject.getIdEvento());
+                EventoItensEntity eventoPagamentoEntityItens = new EventoItensEntity(savedObject.getIdEvento(),
                         savedObject.getData(), savedObject.getDescricao(), savedObject.getValor(),
                         savedObject.getUsuario(), false, "Evento 1 de 1");
                 eventoItensRepository.save(eventoPagamentoEntityItens);
                 log.info("[Cadastro-eventos] Evento unico salvo na tabela de itens com id {}, atrelado ao evento com id {}.",
-                        eventoPagamentoEntityItens.getIdOcorrencia(), eventoPagamentoEntityItens.getIdAgregacao());
+                        eventoPagamentoEntityItens.getIdOcorrencia(), eventoPagamentoEntityItens.getIdEvento());
                 return eventoPagamentoEntityMapper.toDomain(savedObject);
 
             case MENSAL:
-                log.info("[Cadastro-eventos] Criando eventos mensais atrelados ao id {} na tabela de itens", savedObject.getId());
+                log.info("[Cadastro-eventos] Criando eventos mensais atrelados ao id {} na tabela de itens", savedObject.getIdEvento());
                 LocalDate dataAtual = savedObject.getData(); // Primeira data é a original
                 int diaInicial = dataAtual.getDayOfMonth();
 
@@ -69,7 +69,7 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                     }
 
                     EventoItensEntity eventoMensal = new EventoItensEntity(
-                            savedObject.getId(),
+                            savedObject.getIdEvento(),
                             dataAtual,
                             savedObject.getDescricao(),
                             savedObject.getValor(),
@@ -79,7 +79,7 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                     );
                     EventoItensEntity eventoItens = eventoItensRepository.save(eventoMensal);
                     log.info("[Cadastro-eventos] Evento Mensal criado com id {}, agregado ao id {}.",
-                            eventoItens.getIdOcorrencia(), eventoItens.getIdAgregacao());
+                            eventoItens.getIdOcorrencia(), eventoItens.getIdEvento());
                 }
 
                 return eventoPagamentoEntityMapper.toDomain(savedObject);

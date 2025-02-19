@@ -14,7 +14,7 @@ public class EventoPagamentoEntityMapper {
 
     public EventoPagamento toDomain(EventoPagamentoEntity eventoPagamentoEntity) {
         return new EventoPagamento(eventoPagamentoEntity.getDescricao(), eventoPagamentoEntity.getData(),
-                eventoPagamentoEntity.getRecorrencia(), eventoPagamentoEntity.getId(),
+                eventoPagamentoEntity.getRecorrencia(), eventoPagamentoEntity.getIdEvento(),
                 eventoPagamentoEntity.getUsuario(), eventoPagamentoEntity.getValor(),
                 eventoPagamentoEntity.getQuantidadeEventos(), eventoPagamentoEntity.getIntervaloRepeticao(),
                 eventoPagamentoEntity.getTipoEvento());
