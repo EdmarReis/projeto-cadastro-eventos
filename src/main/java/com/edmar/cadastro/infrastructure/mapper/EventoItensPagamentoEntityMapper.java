@@ -8,7 +8,7 @@ public class EventoItensPagamentoEntityMapper {
     public EventoItens mapToEventoItens(EventoItensEntity entity) {
         return new EventoItens(
                 entity.getIdOcorrencia(),
-                entity.getIdAgregacao(),
+                entity.getIdEvento(),
                 entity.getDataEvento(),
                 entity.getDescricao(),
                 entity.getValor(),

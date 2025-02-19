@@ -14,7 +14,7 @@ public abstract class Evento {
     private TipoEvento tipoEvento;
 
     public Evento(String descricao, LocalDate data, Recorrencia recorrencia, Long id, String usuario,
-                  Long quantidadeEventos, Long intervaloRepeticao, TipoEvento tipoEvento) {
+                  Long intervaloRepeticao, Long quantidadeEventos, TipoEvento tipoEvento) {
         this.descricao = descricao;
         this.data = data;
         this.recorrencia = recorrencia;
@@ -26,7 +26,7 @@ public abstract class Evento {
     }
 
     public Evento(String descricao, LocalDate data, Recorrencia recorrencia, String usuario,
-                  Long quantidadeEventos, Long intervaloRepeticao, TipoEvento tipoEvento) {
+                  Long intervaloRepeticao, Long quantidadeEventos, TipoEvento tipoEvento) {
         this.descricao = descricao;
         this.data = data;
         this.recorrencia = recorrencia;

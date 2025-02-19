@@ -34,20 +34,20 @@ public class CriarEventoCompromissoRepositoryGateway implements CriarEventoCompr
                 eventoCompromisso.getRecorrencia());
         EventoCompromissoEntity eventoCompromissoEntity = eventoCompromissoEntityMapper.toEntity(eventoCompromisso);
         EventoCompromissoEntity savedObject = eventoCompromissoRepository.save(eventoCompromissoEntity);
-        log.info("[Cadastro-eventos] Evento salvo com id {}.", savedObject.getId());
+        log.info("[Cadastro-eventos] Evento salvo com id {}.", savedObject.getIdEvento());
         switch (eventoCompromisso.getRecorrencia()) {
             case UNICA:
-                log.info("[Cadastro-eventos] Criando evento unico atrelado ao id {} na tabela de itens", savedObject.getId());
-                EventoItensEntity eventoCompromissoEntityItens = new EventoItensEntity(savedObject.getId(),
+                log.info("[Cadastro-eventos] Criando evento unico atrelado ao id {} na tabela de itens", savedObject.getIdEvento());
+                EventoItensEntity eventoCompromissoEntityItens = new EventoItensEntity(savedObject.getIdEvento(),
                         savedObject.getData(), savedObject.getDescricao(), savedObject.getHorario(),
                         savedObject.getUsuario(), false, "Evento 1 de 1");
                 eventoItensRepository.save(eventoCompromissoEntityItens);
                 log.info("[Cadastro-eventos] Evento unico salvo na tabela de itens com id {}, atrelado ao evento com id {}.",
-                        eventoCompromissoEntityItens.getIdOcorrencia(), eventoCompromissoEntityItens.getIdAgregacao());
+                        eventoCompromissoEntityItens.getIdOcorrencia(), eventoCompromissoEntityItens.getIdEvento());
                 return eventoCompromissoEntityMapper.toDomain(savedObject);
 
             case MENSAL:
-                log.info("[Cadastro-eventos] Criando eventos mensais atrelados ao id {} na tabela de itens", savedObject.getId());
+                log.info("[Cadastro-eventos] Criando eventos mensais atrelados ao id {} na tabela de itens", savedObject.getIdEvento());
                 LocalDate dataAtual = savedObject.getData(); // Primeira data é a original
                 int diaInicial = dataAtual.getDayOfMonth();
 
@@ -71,7 +71,7 @@ public class CriarEventoCompromissoRepositoryGateway implements CriarEventoCompr
                     }
 
                     EventoItensEntity eventoMensal = new EventoItensEntity(
-                            savedObject.getId(),
+                            savedObject.getIdEvento(),
                             dataAtual,
                             savedObject.getDescricao(),
                             savedObject.getHorario(),
@@ -81,7 +81,7 @@ public class CriarEventoCompromissoRepositoryGateway implements CriarEventoCompr
                     );
                     EventoItensEntity eventoItens = eventoItensRepository.save(eventoMensal);
                     log.info("[Cadastro-eventos] Evento Mensal criado com id {}, agregado ao id {}.",
-                            eventoItens.getIdOcorrencia(), eventoItens.getIdAgregacao());
+                            eventoItens.getIdOcorrencia(), eventoItens.getIdEvento());
                 }
 
                 return eventoCompromissoEntityMapper.toDomain(savedObject);
