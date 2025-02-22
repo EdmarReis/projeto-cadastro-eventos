@@ -1,16 +1,15 @@
-package com.edmar.cadastro.domain.entity.enviar;
+package com.edmar.cadastro.domain.entity.pagamento;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
-import java.time.LocalTime;
 
-public record EventoCompromissoParaEnvio(
+public record EventoPagamentoParaEnvio(
         String observacao,
         String descricao,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         String data,
-        LocalTime horario,
+        BigDecimal valor,
         String controleEvento,
         Long idEvento
 

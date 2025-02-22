@@ -5,6 +5,7 @@ import com.edmar.cadastro.domain.entity.TipoEvento;
 import com.edmar.cadastro.infrastructure.persistence.EventoEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import java.time.LocalTime;
 @Table(name = "eventos")
 public class EventoCompromissoEntity extends EventoEntity {
 
+    @NotNull(message = "O horário não pode ser nulo.")
     private LocalTime horario;
 
     public EventoCompromissoEntity(String descricao, LocalDate data, Recorrencia recorrencia, String usuario,

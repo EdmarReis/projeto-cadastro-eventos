@@ -2,7 +2,6 @@ package com.edmar.cadastro.interfaces.dto.pagamento;
 
 import com.edmar.cadastro.domain.entity.Recorrencia;
 import com.edmar.cadastro.domain.entity.TipoEvento;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

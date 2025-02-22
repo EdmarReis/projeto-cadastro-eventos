@@ -6,6 +6,7 @@ import com.edmar.cadastro.interfaces.dto.pagamento.CreateEventoPagamentoRequest;
 import com.edmar.cadastro.interfaces.dto.pagamento.CreateEventoPagamentoResponse;
 import com.edmar.cadastro.interfaces.mapper.EventoPagamentoDTOMapper;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,6 @@ public class CriarEventoPagamentoController {
         this.criarEventoPagamentoUseCaseImpl = criarEventoPagamentoUseCaseImpl;
         this.mapper = mapper;
     }
-
 
     @PostMapping
     CreateEventoPagamentoResponse create(@Valid @RequestBody CreateEventoPagamentoRequest request) {

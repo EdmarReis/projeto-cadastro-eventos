@@ -2,7 +2,6 @@ package com.edmar.cadastro.application.usecase.compromisso;
 
 import com.edmar.cadastro.application.ports.in.CriarEventoCompromissoUseCase;
 import com.edmar.cadastro.application.ports.out.CriarEventoCompromissoGateway;
-import com.edmar.cadastro.application.ports.out.CriarEventoPagamentoGateway;
 import com.edmar.cadastro.domain.entity.compromisso.EventoCompromisso;
 
 public class CriarEventoCompromissoUseCaseImpl implements CriarEventoCompromissoUseCase {

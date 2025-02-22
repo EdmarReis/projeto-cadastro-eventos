@@ -23,5 +23,4 @@ public class FinalizaEventoController {
         finalizaEventoUseCase.executar(id);
         return ResponseEntity.ok("Evento com ID " + id + " finalizado com sucesso.");
     }
-
 }

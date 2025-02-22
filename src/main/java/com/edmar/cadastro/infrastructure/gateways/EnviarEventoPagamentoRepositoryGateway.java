@@ -26,8 +26,8 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
 
         return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte cada entidade
-                        .toList() // Coleta em uma nova lista
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
+                        .toList()
                 );
     }
 
@@ -37,8 +37,8 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
 
         return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte cada entidade
-                        .toList() // Coleta em uma nova lista
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
+                        .toList()
                 );
     }
 
@@ -48,8 +48,8 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
 
         return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte cada entidade
-                        .toList() // Coleta em uma nova lista
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
+                        .toList()
                 );
     }
 
@@ -59,8 +59,8 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
 
         return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNull(dataAtual)
                 .map(lista -> lista.stream()
-                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens) // Converte para DTO
-                        .sorted(Comparator.comparing(EventoItens::getDataEvento)) // Ordena por data ascendente
+                        .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
+                        .sorted(Comparator.comparing(EventoItens::getDataEvento))
                         .toList()
                 );
     }

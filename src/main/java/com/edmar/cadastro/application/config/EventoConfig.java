@@ -8,7 +8,7 @@ import com.edmar.cadastro.application.ports.out.FinalizaEventoGateway;
 import com.edmar.cadastro.application.usecase.compromisso.CriarEventoCompromissoUseCaseImpl;
 import com.edmar.cadastro.application.usecase.pagamento.CriarEventoPagamentoUseCaseImpl;
 import com.edmar.cadastro.application.usecase.FinalizaEventoUseCaseImpl;
-import com.edmar.cadastro.domain.entity.enviar.EventoPagamentoParaEnvio;
+import com.edmar.cadastro.domain.entity.pagamento.EventoPagamentoParaEnvio;
 import com.edmar.cadastro.infrastructure.gateways.CriarEventoCompromissoRepositoryGateway;
 import com.edmar.cadastro.infrastructure.gateways.CriarEventoPagamentoRepositoryGateway;
 import com.edmar.cadastro.infrastructure.gateways.EnviarEventoCompromissoRepositoryGateway;
@@ -41,7 +41,7 @@ public class EventoConfig {
     }
 
 
-    @Bean // novo
+    @Bean
     EnviarEventoGateway enviarEventoGatewayPagamento(EventoItensRepository eventoItensRepository,
                                             EventoItensPagamentoEntityMapper eventoItensPagamentoEntityMapper) {
         return new EnviarEventoPagamentoRepositoryGateway(eventoItensRepository, eventoItensPagamentoEntityMapper);
@@ -53,12 +53,12 @@ public class EventoConfig {
         return new EnviarEventoCompromissoRepositoryGateway(eventoItensRepository, eventoItensCompromissoEntityMapper);
     }
 
-    @Bean //novo
+    @Bean
     EventoItensPagamentoEntityMapper eventoItensEntityMapper(){
         return new EventoItensPagamentoEntityMapper();
     }
 
-    @Bean //novo
+    @Bean
     EventoItensCompromissoEntityMapper eventoItensCompromissoEntityMapper(){
         return new EventoItensCompromissoEntityMapper();
     }
@@ -107,11 +107,5 @@ public class EventoConfig {
     EventoCompromissoDTOMapper eventoCompromissoDTOMapper() {
         return new EventoCompromissoDTOMapper();
     }
-
-    /**@Bean
-    public EnviarEventoGateway enviarEventoGateway(EventoItensRepository eventoItensRepository,
-                                                   EventoItensCompromissoEntityMapper mapper) {
-        return new EnviarEventoCompromissoRepositoryGateway(eventoItensRepository, mapper);
-    }**/
 
 }

@@ -6,7 +6,4 @@ public class EventoNaoEncontradoException extends Exception {
         super(message);
     }
 
-    public EventoNaoEncontradoException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

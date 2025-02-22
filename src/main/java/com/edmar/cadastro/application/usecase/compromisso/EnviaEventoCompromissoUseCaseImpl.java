@@ -1,13 +1,13 @@
 package com.edmar.cadastro.application.usecase.compromisso;
 
+import com.edmar.cadastro.application.ports.in.RecebeCompromissoParaEnvioGateway;
 import com.edmar.cadastro.application.ports.out.EnviarEventoGateway;
-import com.edmar.cadastro.domain.entity.enviar.EventoCompromissoParaEnvio;
+import com.edmar.cadastro.domain.entity.compromisso.EventoCompromissoParaEnvio;
 import com.edmar.cadastro.domain.entity.itens.EventoItens;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class EnviaEventoCompromissoUseCaseImpl {
+public class EnviaEventoCompromissoUseCaseImpl implements RecebeCompromissoParaEnvioGateway {
 
     private final EnviarEventoGateway enviarEventoGateway;
     private final RestTemplate restTemplate;
@@ -34,16 +34,24 @@ public class EnviaEventoCompromissoUseCaseImpl {
     }
 
     @Scheduled(fixedRate = 14400000)
-    public void enviarEvento() throws JsonProcessingException {
-        log.info("[Cadastro-eventos] Iniciando o processamento de envio de mensagens de compromissos.");
+    public void executarAgendamento() throws JsonProcessingException {
+        log.info("[Cadastro-eventos] Iniciando execução de eventos de compromissos via @Scheduled");
+        processarEventos();
+    }
 
-        // Obtém os eventos
+    @Override
+    public void executarManual() {
+        log.info("[Cadastro-eventos] Iniciando execução de eventos de compromissos manual");
+        processarEventos();
+    }
+
+    public void processarEventos() {
+
         Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
         Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
         Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
         Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
 
-        // Configurações da requisição
         String url = "http://localhost:8081/enviar/msg/compromisso";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -51,19 +59,15 @@ public class EnviaEventoCompromissoUseCaseImpl {
         objectMapper.registerModule(new JavaTimeModule());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Envia eventos atrasado
         eventoOptionalEmAtraso.ifPresent(eventos -> enviarEventos(eventos, "Compromisso em atraso.",
                 url, headers, objectMapper, formatter));
 
-        // Envia eventos para hoje
         eventoOptional.ifPresent(eventos -> enviarEventos(eventos, "Compromisso para hoje.",
                 url, headers, objectMapper, formatter));
 
-        // Envia eventos vencimento dia seguinte
         eventoOptionalDiaMaisUm.ifPresent(eventos -> enviarEventos(eventos, "Compromisso para amanhã.",
                 url, headers, objectMapper, formatter));
 
-        // Envia eventos vencimento 2 dias a frente
         eventoOptionalDiaMaisDois.ifPresent(eventos -> enviarEventos(eventos, "Compromisso para depois de amanhã.",
                 url, headers, objectMapper, formatter));
 
