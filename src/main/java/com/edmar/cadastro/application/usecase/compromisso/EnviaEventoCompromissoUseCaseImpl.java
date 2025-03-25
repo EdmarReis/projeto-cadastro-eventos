@@ -17,8 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 @Slf4j
@@ -43,6 +42,35 @@ public class EnviaEventoCompromissoUseCaseImpl implements RecebeCompromissoParaE
     public void executarManual() {
         log.info("[Cadastro-eventos] Iniciando execução de eventos de compromissos manual");
         processarEventos();
+    }
+
+    @Override
+    public List<Map<String, Object>> executarApp() {
+        List<Map<String, Object>> allEvents = new ArrayList<>();
+
+        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
+        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
+        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
+        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
+
+        // Adiciona os eventos na ordem correta se estiverem presentes
+        eventoOptionalEmAtraso.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Evento em atraso"))));
+        eventoOptional.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Evento para hoje"))));
+        eventoOptionalDiaMaisUm.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Evento com vencimento para amanhã"))));
+        eventoOptionalDiaMaisDois.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Evento com vencimento para depois de amanhã"))));
+
+        return allEvents;
+    }
+
+    private Map<String, Object> eventoParaMap(EventoItens evento, String acompanhamento) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("acompanhamento", acompanhamento);
+        map.put("descricao", evento.getDescricao());
+        map.put("data", evento.getDataEvento());
+        map.put("horario", evento.getHorario());
+        map.put("ocorrencia", evento.getControleEvento());
+        map.put("idEvento", evento.getIdOcorrencia());
+        return map;
     }
 
     public void processarEventos() {
