@@ -1,6 +1,5 @@
 package com.edmar.cadastro.infrastructure.persistence.itens;
 
-import com.edmar.cadastro.infrastructure.persistence.EventoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

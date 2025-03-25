@@ -1,10 +1,6 @@
 package com.edmar.cadastro.infrastructure.persistence.itens;
 
-import aj.org.objectweb.asm.commons.Remapper;
-import com.edmar.cadastro.domain.entity.itens.EventoItens;
-import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,7 +1,8 @@
 package com.edmar.cadastro.application.usecase.pagamento;
 
+import com.edmar.cadastro.application.ports.in.RecebePagamentosParaEnvioGateway;
 import com.edmar.cadastro.application.ports.out.EnviarEventoGateway;
-import com.edmar.cadastro.domain.entity.enviar.EventoPagamentoParaEnvio;
+import com.edmar.cadastro.domain.entity.pagamento.EventoPagamentoParaEnvio;
 import com.edmar.cadastro.domain.entity.itens.EventoItens;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,12 +16,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 @Slf4j
-public class EnviaEventoPagamentoUseCaseImpl {
+public class EnviaEventoPagamentoUseCaseImpl implements RecebePagamentosParaEnvioGateway {
 
     private final EnviarEventoGateway enviarEventoGateway;
     private final RestTemplate restTemplate;
@@ -32,9 +32,47 @@ public class EnviaEventoPagamentoUseCaseImpl {
     }
 
     @Scheduled(fixedRate = 14400000, initialDelay = 300000)
-    public void enviarEvento() throws JsonProcessingException {
-        log.info("[Cadastro-eventos] Iniciando o processamento de envio de mensagens de pagamento.");
+    public void executarAgendamento() {
+        log.info("[Cadastro-eventos] Iniciando execução de eventos de pagamentos via @Scheduled");
+        processarEventos();
+    }
 
+    @Override
+    public void executarManual() {
+        log.info("[Cadastro-eventos] Iniciando execução de eventos de pagamentos manual");
+        processarEventos();
+    }
+
+    @Override
+    public List<Map<String, Object>> executarApp() {
+        List<Map<String, Object>> allEvents = new ArrayList<>();
+
+        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
+        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
+        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
+        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
+
+        // Adiciona os eventos na ordem correta se estiverem presentes
+        eventoOptionalEmAtraso.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Pagamento em atraso"))));
+        eventoOptional.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Pagamento para hoje"))));
+        eventoOptionalDiaMaisUm.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Pagamento com vencimento para amanhã"))));
+        eventoOptionalDiaMaisDois.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Pagamento com vencimento para depois de amanhã"))));
+
+        return allEvents;
+    }
+
+    private Map<String, Object> eventoParaMap(EventoItens evento, String acompanhamento) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("acompanhamento", acompanhamento);
+        map.put("descricao", evento.getDescricao());
+        map.put("data", evento.getDataEvento());
+        map.put("valor", evento.getValor());
+        map.put("ocorrencia", evento.getControleEvento());
+        map.put("idEvento", evento.getIdOcorrencia());
+        return map;
+    }
+
+    private void processarEventos() {
         Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
         Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
         Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
@@ -47,17 +85,10 @@ public class EnviaEventoPagamentoUseCaseImpl {
         objectMapper.registerModule(new JavaTimeModule());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        eventoOptionalEmAtraso.ifPresent(eventos -> enviarEventos(eventos, "Pagamento em atraso.",
-                url, headers, objectMapper, formatter));
-
-        eventoOptional.ifPresent(eventos -> enviarEventos(eventos, "Pagamento com vencimento para hoje.",
-                url, headers, objectMapper, formatter));
-
-        eventoOptionalDiaMaisUm.ifPresent(eventos -> enviarEventos(eventos, "Pagamento com vencimento para amanhã.",
-                url, headers, objectMapper, formatter));
-
-        eventoOptionalDiaMaisDois.ifPresent(eventos -> enviarEventos(eventos, "Pagamento com vencimento para depois de amanhã.",
-                url, headers, objectMapper, formatter));
+        eventoOptionalEmAtraso.ifPresent(eventos -> enviarEventos(eventos, "Pagamento em atraso.", url, headers, objectMapper, formatter));
+        eventoOptional.ifPresent(eventos -> enviarEventos(eventos, "Pagamento com vencimento para hoje.", url, headers, objectMapper, formatter));
+        eventoOptionalDiaMaisUm.ifPresent(eventos -> enviarEventos(eventos, "Pagamento com vencimento para amanhã.", url, headers, objectMapper, formatter));
+        eventoOptionalDiaMaisDois.ifPresent(eventos -> enviarEventos(eventos, "Pagamento com vencimento para depois de amanhã.", url, headers, objectMapper, formatter));
 
         log.info("[Cadastro-eventos] Processamento de pagamentos finalizado.");
     }

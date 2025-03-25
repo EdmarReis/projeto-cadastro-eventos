@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass // Define que esta classe é uma superclasse para outras entidades
+@MappedSuperclass
 public abstract class EventoEntity {
 
     @Id
@@ -30,8 +30,9 @@ public abstract class EventoEntity {
     @NotNull(message = "O usuário não pode ser nulo.")
     @NotBlank(message = "O usuário não pode estar vazio ou em branco.")
     private String usuario;
-    @Min(1)
+    @Min(value = 1, message = "A quantidade de eventos deve ser maior ou igual a 1")
     private Long quantidadeEventos;
+    @Min(value = 1, message = "O intervalo de repetição deve ser maior ou igual a 1")
     private Long intervaloRepeticao;
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;

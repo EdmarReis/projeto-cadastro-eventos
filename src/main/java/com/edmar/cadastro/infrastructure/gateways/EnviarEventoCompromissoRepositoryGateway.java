@@ -26,12 +26,11 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     public Optional<List<EventoItens>> enviarEvento() {
         LocalDate data = LocalDate.now();
 
-        //return eventoItensRepository.findByDataEventoAndFinalizadoFalse(data)
         return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(data)
 
                 .map(lista -> lista.stream()
                         .map(eventoItensCompromissoEntityMapper::mapToEventoItens) // Converte cada entidade
-                        .toList() // Coleta em uma nova lista
+                        .toList()
                 );
     }
 
@@ -39,7 +38,6 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     public Optional<List<EventoItens>> enviarEventoDiaMaisUm() {
         LocalDate data = LocalDate.now().plusDays(1);
 
-        //return eventoItensRepository.findByDataEventoAndFinalizadoFalse(data)
         return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(data)
                 .map(lista -> lista.stream()
                         .map(eventoItensCompromissoEntityMapper::mapToEventoItens) // Converte cada entidade
@@ -51,11 +49,10 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     public Optional<List<EventoItens>> enviarEventoDiaMaisDois() {
         LocalDate data = LocalDate.now().plusDays(2);
 
-        //return eventoItensRepository.findByDataEventoAndFinalizadoFalse(data)
         return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(data)
                 .map(lista -> lista.stream()
-                        .map(eventoItensCompromissoEntityMapper::mapToEventoItens) // Converte cada entidade
-                        .toList() // Coleta em uma nova lista
+                        .map(eventoItensCompromissoEntityMapper::mapToEventoItens)
+                        .toList()
                 );
     }
 
@@ -63,11 +60,10 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     public Optional<List<EventoItens>> enviarEventoEmAtraso() {
         LocalDate dataAtual = LocalDate.now();
 
-        //return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalse(dataAtual)
         return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndValorIsNull(dataAtual)
                 .map(lista -> lista.stream()
-                        .map(eventoItensCompromissoEntityMapper::mapToEventoItens) // Converte para DTO
-                        .sorted(Comparator.comparing(EventoItens::getDataEvento)) // Ordena por data ascendente
+                        .map(eventoItensCompromissoEntityMapper::mapToEventoItens)
+                        .sorted(Comparator.comparing(EventoItens::getDataEvento))
                         .toList()
                 );
     }

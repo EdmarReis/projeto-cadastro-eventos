@@ -38,7 +38,7 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                 log.info("[Cadastro-eventos] Criando evento unico atrelado ao id {} na tabela de itens", savedObject.getIdEvento());
                 EventoItensEntity eventoPagamentoEntityItens = new EventoItensEntity(savedObject.getIdEvento(),
                         savedObject.getData(), savedObject.getDescricao(), savedObject.getValor(),
-                        savedObject.getUsuario(), false, "Evento 1 de 1");
+                        savedObject.getUsuario(), false, "Pagamento unico");
                 eventoItensRepository.save(eventoPagamentoEntityItens);
                 log.info("[Cadastro-eventos] Evento unico salvo na tabela de itens com id {}, atrelado ao evento com id {}.",
                         eventoPagamentoEntityItens.getIdOcorrencia(), eventoPagamentoEntityItens.getIdEvento());
@@ -46,23 +46,20 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
 
             case MENSAL:
                 log.info("[Cadastro-eventos] Criando eventos mensais atrelados ao id {} na tabela de itens", savedObject.getIdEvento());
-                LocalDate dataAtual = savedObject.getData(); // Primeira data é a original
+                LocalDate dataAtual = savedObject.getData();
                 int diaInicial = dataAtual.getDayOfMonth();
 
                 for (int i = 0; i < savedObject.getQuantidadeEventos(); i++) {
-                    if (i > 0) { // A partir do segundo mês, calcula a próxima data
+                    if (i > 0) {
                         YearMonth mesAno = YearMonth.from(dataAtual).plusMonths(1);
-                        int ultimoDia = mesAno.lengthOfMonth(); // Último dia do mês
+                        int ultimoDia = mesAno.lengthOfMonth();
 
-                        // Mantém o mesmo dia, se possível
                         if (diaInicial <= ultimoDia) {
                             dataAtual = LocalDate.of(mesAno.getYear(), mesAno.getMonth(), diaInicial);
                         }
-                        // Se o dia inicial era 31 e o mês não tem 31 dias, ajusta para 30 ou último dia
                         else if (diaInicial == 31) {
                             dataAtual = LocalDate.of(mesAno.getYear(), mesAno.getMonth(), (ultimoDia == 30 ? 30 : ultimoDia));
                         }
-                        // Se o dia inicial era 30, mantém 30 (mesmo que o mês tenha 31 dias)
                         else if (diaInicial == 30) {
                             dataAtual = LocalDate.of(mesAno.getYear(), mesAno.getMonth(), Math.min(30, ultimoDia));
                         }
@@ -75,7 +72,7 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                             savedObject.getValor(),
                             savedObject.getUsuario(),
                             false,
-                            "Evento "+ (i+1) + " de " + savedObject.getQuantidadeEventos()
+                            "Pagamento mensal "+ (i+1) + " de " + savedObject.getQuantidadeEventos()
                     );
                     EventoItensEntity eventoItens = eventoItensRepository.save(eventoMensal);
                     log.info("[Cadastro-eventos] Evento Mensal criado com id {}, agregado ao id {}.",
@@ -85,12 +82,40 @@ public class CriarEventoPagamentoRepositoryGateway implements CriarEventoPagamen
                 return eventoPagamentoEntityMapper.toDomain(savedObject);
 
             case REPETICAO:
-                System.out.println("Aplicando regras para eventos de recepção...");
+                log.info("[Cadastro-eventos] Criando eventos de pagamento com recorrencia de repetição atrelados ao id {} na tabela de itens", savedObject.getIdEvento());
+
+                LocalDate dataRepeticao = savedObject.getData(); // Primeira data é a original
+                Long intervaloDias = savedObject.getIntervaloRepeticao();
+
+                if (intervaloDias == null || intervaloDias <= 0) {
+                    log.error("[Cadastro-eventos] Erro! Intervalo de repetição inválido.");
+                    throw new IllegalArgumentException("O intervalo de repetição deve ser maior que zero.");
+                }
+
+                for (int i = 0; i < savedObject.getQuantidadeEventos(); i++) {
+                    if (i > 0) {
+                        dataRepeticao = dataRepeticao.plusDays(intervaloDias); // Adiciona o intervalo de dias
+                    }
+
+                    EventoItensEntity eventoRepeticao = new EventoItensEntity(
+                            savedObject.getIdEvento(),
+                            dataRepeticao,
+                            savedObject.getDescricao(),
+                            savedObject.getValor(),
+                            savedObject.getUsuario(),
+                            false,
+                            "Pagamento repetição "+ (i+1) + " de " + savedObject.getQuantidadeEventos()
+                    );
+
+                    EventoItensEntity eventoItens = eventoItensRepository.save(eventoRepeticao);
+                    log.info("[Cadastro-eventos] Evento de repetição criado com id {}, atrelado ao id {}.",
+                            eventoItens.getIdOcorrencia(), eventoItens.getIdEvento());
+                }
+
                 return eventoPagamentoEntityMapper.toDomain(savedObject);
             default:
                 log.error("[Cadastro-eventos] Erro! Tipo de recorrencia inválida.");
                 throw new IllegalArgumentException("Tipo de recorrência inválido.");
-
         }
     }
 }

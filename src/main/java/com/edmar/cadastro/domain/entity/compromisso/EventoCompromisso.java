@@ -18,18 +18,8 @@ public class EventoCompromisso extends Evento {
         this.horario = horario;
     }
 
-    public EventoCompromisso(String descricao, LocalDate data, Recorrencia recorrencia, String usuario,
-                             Long quantidadeEventos, Long intervaloRepeticao, TipoEvento tipoEvento,
-                             LocalTime horario) {
-        super(descricao, data, recorrencia, usuario, quantidadeEventos, intervaloRepeticao, tipoEvento);
-        this.horario = horario;
-    }
-
     public LocalTime getHorario() {
         return horario;
     }
 
-    public void setHorario(LocalTime horario) {
-        this.horario = horario;
-    }
 }
