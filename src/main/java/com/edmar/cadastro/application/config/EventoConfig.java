@@ -1,10 +1,8 @@
 package com.edmar.cadastro.application.config;
 
 import com.edmar.cadastro.application.ports.in.FinalizaEventoUseCase;
-import com.edmar.cadastro.application.ports.out.CriarEventoCompromissoGateway;
-import com.edmar.cadastro.application.ports.out.CriarEventoPagamentoGateway;
-import com.edmar.cadastro.application.ports.out.EnviarEventoGateway;
-import com.edmar.cadastro.application.ports.out.FinalizaEventoGateway;
+import com.edmar.cadastro.application.ports.out.*;
+import com.edmar.cadastro.application.usecase.LoginUseCaseImpl;
 import com.edmar.cadastro.application.usecase.compromisso.CriarEventoCompromissoUseCaseImpl;
 import com.edmar.cadastro.application.usecase.pagamento.CriarEventoPagamentoUseCaseImpl;
 import com.edmar.cadastro.application.usecase.FinalizaEventoUseCaseImpl;
@@ -19,6 +17,7 @@ import com.edmar.cadastro.infrastructure.mapper.EventoItensPagamentoEntityMapper
 import com.edmar.cadastro.infrastructure.mapper.EventoPagamentoEntityMapper;
 import com.edmar.cadastro.infrastructure.persistence.compromisso.EventoCompromissoRepository;
 import com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository;
+import com.edmar.cadastro.infrastructure.persistence.login.LoginRepository;
 import com.edmar.cadastro.infrastructure.persistence.pagamento.EventoPagamentoRepository;
 import com.edmar.cadastro.interfaces.mapper.EventoCompromissoDTOMapper;
 import com.edmar.cadastro.interfaces.mapper.EventoPagamentoDTOMapper;
@@ -106,6 +105,11 @@ public class EventoConfig {
     @Bean
     EventoCompromissoDTOMapper eventoCompromissoDTOMapper() {
         return new EventoCompromissoDTOMapper();
+    }
+
+    @Bean
+    LoginUseCaseImpl loginUseCase(LoginGateway loginGateway){
+        return new LoginUseCaseImpl(loginGateway);
     }
 
 }
