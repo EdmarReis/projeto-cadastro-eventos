@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +34,9 @@ public class RecebeCompromissoParaEnvioController {
         return ResponseEntity.ok("Comando de compromissos executado");
     }
 
-    @PostMapping("/compromissos/app")
-    public ResponseEntity<String> recebeParaEnvioApp() {
-
+    @PostMapping("/compromissos/app/{usuario}")
+    public ResponseEntity<String> recebeParaEnvioApp(@PathVariable String usuario) {
+        System.out.println(usuario);
         // Obtendo os compromissos
         List<Map<String, Object>> compromissos = recebeCompromissoParaEnvioGateway.executarApp();
 
