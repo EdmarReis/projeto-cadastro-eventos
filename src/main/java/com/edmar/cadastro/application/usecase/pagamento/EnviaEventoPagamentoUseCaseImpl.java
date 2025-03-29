@@ -34,23 +34,23 @@ public class EnviaEventoPagamentoUseCaseImpl implements RecebePagamentosParaEnvi
     @Scheduled(fixedRate = 14400000, initialDelay = 300000)
     public void executarAgendamento() {
         log.info("[Cadastro-eventos] Iniciando execução de eventos de pagamentos via @Scheduled");
-        processarEventos();
+        processarEventos("Edmar");
     }
 
     @Override
-    public void executarManual() {
+    public void executarManual(String usuario) {
         log.info("[Cadastro-eventos] Iniciando execução de eventos de pagamentos manual");
-        processarEventos();
+        processarEventos(usuario);
     }
 
     @Override
-    public List<Map<String, Object>> executarApp() {
+    public List<Map<String, Object>> executarApp(String usuario) {
         List<Map<String, Object>> allEvents = new ArrayList<>();
 
-        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
-        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
+        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso(usuario);
+        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois(usuario);
 
         // Adiciona os eventos na ordem correta se estiverem presentes
         eventoOptionalEmAtraso.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Pagamento em atraso"))));
@@ -72,11 +72,11 @@ public class EnviaEventoPagamentoUseCaseImpl implements RecebePagamentosParaEnvi
         return map;
     }
 
-    private void processarEventos() {
-        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
-        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
+    private void processarEventos(String usuario) {
+        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso(usuario);
+        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois(usuario);
 
         String url = "http://localhost:8081/enviar/msg/pagamento";
         HttpHeaders headers = new HttpHeaders();

@@ -28,17 +28,16 @@ public class RecebeCompromissoParaEnvioController {
     @Autowired
     private RecebeCompromissoParaEnvioGateway recebeCompromissoParaEnvioGateway;
 
-    @PostMapping("/compromissos")
-    public ResponseEntity<String> recebeParaEnvio() {
-        recebeCompromissoParaEnvioGateway.executarManual();
+    @PostMapping("/compromissos/{usuario}")
+    public ResponseEntity<String> recebeParaEnvio(@PathVariable String usuario) {
+        recebeCompromissoParaEnvioGateway.executarManual(usuario);
         return ResponseEntity.ok("Comando de compromissos executado");
     }
 
     @PostMapping("/compromissos/app/{usuario}")
     public ResponseEntity<String> recebeParaEnvioApp(@PathVariable String usuario) {
-        System.out.println(usuario);
         // Obtendo os compromissos
-        List<Map<String, Object>> compromissos = recebeCompromissoParaEnvioGateway.executarApp();
+        List<Map<String, Object>> compromissos = recebeCompromissoParaEnvioGateway.executarApp(usuario);
 
         // Verificando se a lista está vazia
         /**if (compromissos.isEmpty()) {

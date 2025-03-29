@@ -6,11 +6,11 @@ import java.util.Optional;
 
 public interface EnviarEventoGateway {
 
-    Optional<List<EventoItens>> enviarEvento();
+    Optional<List<EventoItens>> enviarEvento(String usuario);
 
-    Optional<List<EventoItens>> enviarEventoDiaMaisUm();
+    Optional<List<EventoItens>> enviarEventoDiaMaisUm(String usuario);
 
-    Optional<List<EventoItens>> enviarEventoDiaMaisDois();
+    Optional<List<EventoItens>> enviarEventoDiaMaisDois(String usuario);
 
-    Optional<List<EventoItens>> enviarEventoEmAtraso();
+    Optional<List<EventoItens>> enviarEventoEmAtraso(String usuario);
 }

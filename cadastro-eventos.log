@@ -8669,3 +8669,674 @@ Caused by: java.net.ConnectException: Connection refused
 08:52:45.992 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 08:52:45.998 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 08:52:46.010 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+08:56:37.534 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+08:56:37.567 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 31736 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+08:56:37.568 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+08:56:38.067 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+08:56:38.101 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 4 JPA repository interfaces.
+08:56:38.472 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+08:56:38.478 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+08:56:38.479 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+08:56:38.479 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+08:56:38.516 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+08:56:38.516 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 920 ms
+08:56:38.668 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+08:56:38.701 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+08:56:38.724 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+08:56:38.862 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+08:56:38.875 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+08:56:39.096 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@103bcc9f
+08:56:39.097 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+08:56:39.138 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+08:56:39.138 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+08:56:39.565 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+08:56:39.615 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+08:56:39.871 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+08:56:40.156 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+08:56:40.192 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+08:56:40.205 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path '/'
+08:56:40.220 [main] INFO  com.edmar.cadastro.CadastroEventos - Started CadastroEventos in 2.935 seconds (process running for 3.201)
+08:56:40.222 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Iniciando execução de eventos de compromissos via @Scheduled
+08:56:40.315 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Enviando evento de compromisso com ID 6239
+08:56:40.343 [scheduling-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/enviar/msg/compromisso": Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.postForObject(RestTemplate.java:507)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.lambda$enviarEventos$12(EnviaEventoCompromissoUseCaseImpl.java:123)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.enviarEventos(EnviaEventoCompromissoUseCaseImpl.java:107)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.lambda$processarEventos$9(EnviaEventoCompromissoUseCaseImpl.java:93)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.processarEventos(EnviaEventoCompromissoUseCaseImpl.java:93)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.executarAgendamento(EnviaEventoCompromissoUseCaseImpl.java:38)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:579)
+	at java.base/sun.nio.ch.Net.connect(Net.java:568)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:593)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/java.net.Socket.connect(Socket.java:583)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:281)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1309)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1057)
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	... 24 common frames omitted
+08:56:43.314 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+08:56:43.316 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+08:56:43.319 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:21:36.666 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:21:36.691 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 39842 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:21:36.692 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:21:37.168 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:21:37.203 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+09:21:37.589 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:21:37.595 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:21:37.596 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:21:37.596 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:21:37.638 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:21:37.639 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 926 ms
+09:21:37.805 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:21:37.834 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:21:37.855 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:21:38.001 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:21:38.014 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:21:38.264 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cdcfaa6
+09:21:38.265 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:21:38.305 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:21:38.305 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:21:38.762 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:21:38.807 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:21:38.984 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'enviaEventoCompromissoUseCaseImpl' defined in file [/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes/com/edmar/cadastro/application/usecase/compromisso/EnviaEventoCompromissoUseCaseImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'enviarEventoGatewayCompromisso' defined in class path resource [com/edmar/cadastro/application/config/EventoConfig.class]: Unsatisfied dependency expressed through method 'enviarEventoGatewayCompromisso' parameter 0: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+09:21:38.984 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:21:38.986 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:21:38.991 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:21:38.992 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+09:21:39.007 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+09:21:39.015 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'enviaEventoCompromissoUseCaseImpl' defined in file [/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes/com/edmar/cadastro/application/usecase/compromisso/EnviaEventoCompromissoUseCaseImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'enviarEventoGatewayCompromisso' defined in class path resource [com/edmar/cadastro/application/config/EventoConfig.class]: Unsatisfied dependency expressed through method 'enviarEventoGatewayCompromisso' parameter 0: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.edmar.cadastro.CadastroEventos.main(CadastroEventos.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'enviarEventoGatewayCompromisso' defined in class path resource [com/edmar/cadastro/application/config/EventoConfig.class]: Unsatisfied dependency expressed through method 'enviarEventoGatewayCompromisso' parameter 0: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 33 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:286)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
+	at org.springframework.data.util.Lazy.get(Lazy.java:113)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:292)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:107)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
+	... 56 common frames omitted
+Caused by: java.lang.IllegalArgumentException: At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.util.Assert.isTrue(Assert.java:129)
+	at org.springframework.data.jpa.repository.query.QueryParameterSetterFactory$CriteriaQueryParameterSetterFactory.create(QueryParameterSetterFactory.java:296)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createQueryParameterSetter(ParameterBinderFactory.java:146)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createSetters(ParameterBinderFactory.java:135)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createSetters(ParameterBinderFactory.java:127)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createCriteriaBinder(ParameterBinderFactory.java:73)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$QueryPreparer.getBinder(PartTreeJpaQuery.java:350)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$QueryPreparer.<init>(PartTreeJpaQuery.java:225)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$CountQueryPreparer.<init>(PartTreeJpaQuery.java:370)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:103)
+	... 60 common frames omitted
+09:23:29.501 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:23:29.523 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 40439 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:23:29.524 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:23:29.994 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:23:30.029 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+09:23:30.386 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:23:30.390 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:23:30.391 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:23:30.391 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:23:30.421 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:23:30.428 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 871 ms
+09:23:30.584 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:23:30.608 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:23:30.624 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:23:30.754 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:23:30.765 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:23:30.924 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@731ab49b
+09:23:30.925 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:23:30.950 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:23:30.950 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:23:31.356 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:23:31.387 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:23:31.529 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'enviaEventoCompromissoUseCaseImpl' defined in file [/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes/com/edmar/cadastro/application/usecase/compromisso/EnviaEventoCompromissoUseCaseImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'enviarEventoGatewayCompromisso' defined in class path resource [com/edmar/cadastro/application/config/EventoConfig.class]: Unsatisfied dependency expressed through method 'enviarEventoGatewayCompromisso' parameter 0: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+09:23:31.530 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:23:31.531 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:23:31.536 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:23:31.536 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+09:23:31.550 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+09:23:31.557 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'enviaEventoCompromissoUseCaseImpl' defined in file [/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes/com/edmar/cadastro/application/usecase/compromisso/EnviaEventoCompromissoUseCaseImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'enviarEventoGatewayCompromisso' defined in class path resource [com/edmar/cadastro/application/config/EventoConfig.class]: Unsatisfied dependency expressed through method 'enviarEventoGatewayCompromisso' parameter 0: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.edmar.cadastro.CadastroEventos.main(CadastroEventos.java:12)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'enviarEventoGatewayCompromisso' defined in class path resource [com/edmar/cadastro/application/config/EventoConfig.class]: Unsatisfied dependency expressed through method 'enviarEventoGatewayCompromisso' parameter 0: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'eventoItensRepository' defined in com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 33 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); Reason: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:286)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
+	at org.springframework.data.util.Lazy.get(Lazy.java:113)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:292)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802)
+	... 44 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract java.util.Optional com.edmar.cadastro.infrastructure.persistence.itens.EventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(java.time.LocalDate,java.lang.String); At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:107)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
+	... 56 common frames omitted
+Caused by: java.lang.IllegalArgumentException: At least 2 parameter(s) provided but only 1 parameter(s) present in query
+	at org.springframework.util.Assert.isTrue(Assert.java:129)
+	at org.springframework.data.jpa.repository.query.QueryParameterSetterFactory$CriteriaQueryParameterSetterFactory.create(QueryParameterSetterFactory.java:296)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createQueryParameterSetter(ParameterBinderFactory.java:146)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createSetters(ParameterBinderFactory.java:135)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createSetters(ParameterBinderFactory.java:127)
+	at org.springframework.data.jpa.repository.query.ParameterBinderFactory.createCriteriaBinder(ParameterBinderFactory.java:73)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$QueryPreparer.getBinder(PartTreeJpaQuery.java:350)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$QueryPreparer.<init>(PartTreeJpaQuery.java:225)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$CountQueryPreparer.<init>(PartTreeJpaQuery.java:370)
+	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:103)
+	... 60 common frames omitted
+09:30:31.735 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:30:31.768 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 42678 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:30:31.769 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:30:32.311 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:30:32.349 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 4 JPA repository interfaces.
+09:30:32.719 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:30:32.725 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:30:32.726 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:30:32.726 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:30:32.767 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:30:32.768 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 970 ms
+09:30:32.927 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:30:32.956 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:30:32.976 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:30:33.116 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:30:33.129 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:30:33.352 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ac0bf84
+09:30:33.353 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:30:33.385 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:30:33.385 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:30:33.853 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:30:33.896 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:30:34.153 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:30:34.209 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invalid mapping on handler class [com.edmar.cadastro.interfaces.controller.RecebeCompromissoParaEnvioController]: public org.springframework.http.ResponseEntity com.edmar.cadastro.interfaces.controller.RecebeCompromissoParaEnvioController.recebeParaEnvio(java.lang.String)
+09:30:34.210 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:30:34.211 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:30:34.215 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:30:34.216 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+09:30:34.231 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+09:30:34.239 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected:
+/compromissos/{usuario)
+                      ^
+Char ')' is not allowed in a captured variable name
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+09:31:09.900 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:31:09.929 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 42876 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:31:09.930 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:31:10.458 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:31:10.491 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 4 JPA repository interfaces.
+09:31:10.866 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:31:10.871 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:31:10.872 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:31:10.872 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:31:10.903 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:31:10.903 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 938 ms
+09:31:11.066 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:31:11.089 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:31:11.105 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:31:11.237 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:31:11.248 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:31:11.400 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cdcfaa6
+09:31:11.401 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:31:11.426 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:31:11.426 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:31:11.845 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:31:11.876 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:31:12.128 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:31:12.418 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+09:31:12.455 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+09:31:12.467 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path '/'
+09:31:12.481 [main] INFO  com.edmar.cadastro.CadastroEventos - Started CadastroEventos in 2.806 seconds (process running for 3.023)
+09:31:34.873 [http-nio-8085-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:31:34.875 [http-nio-8085-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:31:34.881 [http-nio-8085-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+09:33:16.493 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Criando novo evento do tipo LEMBRETE com recorrencia UNICA.
+09:33:16.562 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Evento salvo com id 108.
+09:33:16.562 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Criando evento unico atrelado ao id 108 na tabela de itens
+09:33:16.568 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Evento unico salvo na tabela de itens com id 6240, atrelado ao evento com id 108.
+09:36:23.140 [http-nio-8085-exec-7] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Criando novo evento do tipo LEMBRETE com recorrencia UNICA.
+09:36:23.194 [http-nio-8085-exec-7] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Evento salvo com id 109.
+09:36:23.196 [http-nio-8085-exec-7] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Criando evento unico atrelado ao id 109 na tabela de itens
+09:36:23.200 [http-nio-8085-exec-7] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Evento unico salvo na tabela de itens com id 6241, atrelado ao evento com id 109.
+09:37:36.363 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Criando novo evento do tipo LEMBRETE com recorrencia UNICA.
+09:37:36.390 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Evento salvo com id 110.
+09:37:36.391 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Criando evento unico atrelado ao id 110 na tabela de itens
+09:37:36.400 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoPagamentoRepositoryGateway - [Cadastro-eventos] Evento unico salvo na tabela de itens com id 6242, atrelado ao evento com id 110.
+09:37:46.014 [http-nio-8085-exec-9] INFO  c.e.c.i.g.FinalizaEventoRepositoryGateway - [Cadastro-eventos] Tentando finalizar o evento com id 6241
+09:37:46.079 [http-nio-8085-exec-9] INFO  c.e.c.i.g.FinalizaEventoRepositoryGateway - [Cadastro-eventos] Evento com id 6241 finalizado com sucesso
+09:38:01.384 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Criando novo evento do tipo LEMBRETE com recorrencia UNICA.
+09:38:01.401 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Evento salvo com id 111.
+09:38:01.402 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Criando evento unico atrelado ao id 111 na tabela de itens
+09:38:01.409 [http-nio-8085-exec-3] INFO  c.e.c.i.g.CriarEventoCompromissoRepositoryGateway - [Cadastro-eventos] Evento unico salvo na tabela de itens com id 6243, atrelado ao evento com id 111.
+09:43:16.635 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:43:16.643 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:43:16.661 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:43:19.149 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:43:19.179 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 46808 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:43:19.180 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:43:19.699 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:43:19.733 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 4 JPA repository interfaces.
+09:43:20.104 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:43:20.109 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:43:20.110 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:43:20.111 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:43:20.142 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:43:20.148 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 932 ms
+09:43:20.309 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:43:20.337 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:43:20.360 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:43:20.488 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:43:20.500 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:43:20.702 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6968bb65
+09:43:20.703 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:43:20.732 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:43:20.732 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:43:21.161 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:43:21.196 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:43:21.367 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enviaEventoCompromissoUseCaseImpl' defined in file [/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes/com/edmar/cadastro/application/usecase/compromisso/EnviaEventoCompromissoUseCaseImpl.class]: Could not create recurring task for @Scheduled method 'executarAgendamento': Only no-arg methods may be annotated with @Scheduled
+09:43:21.368 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:43:21.369 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:43:21.374 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:43:21.376 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+09:43:21.390 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+09:43:21.400 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'enviaEventoCompromissoUseCaseImpl' defined in file [/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes/com/edmar/cadastro/application/usecase/compromisso/EnviaEventoCompromissoUseCaseImpl.class]: Could not create recurring task for @Scheduled method 'executarAgendamento': Only no-arg methods may be annotated with @Scheduled
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.edmar.cadastro.CadastroEventos.main(CadastroEventos.java:12)
+Caused by: java.lang.IllegalStateException: Could not create recurring task for @Scheduled method 'executarAgendamento': Only no-arg methods may be annotated with @Scheduled
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.processScheduledSync(ScheduledAnnotationBeanPostProcessor.java:359)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.processScheduled(ScheduledAnnotationBeanPostProcessor.java:340)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.lambda$postProcessAfterInitialization$1(ScheduledAnnotationBeanPostProcessor.java:306)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.lambda$postProcessAfterInitialization$2(ScheduledAnnotationBeanPostProcessor.java:306)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.postProcessAfterInitialization(ScheduledAnnotationBeanPostProcessor.java:305)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:438)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1809)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	... 15 common frames omitted
+09:44:11.386 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:44:11.410 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 47089 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:44:11.411 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:44:11.915 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:44:11.952 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 4 JPA repository interfaces.
+09:44:12.331 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:44:12.336 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:44:12.337 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:44:12.337 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:44:12.372 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:44:12.373 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 935 ms
+09:44:12.535 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:44:12.560 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:44:12.576 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:44:12.702 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:44:12.713 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:44:12.869 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d5508a5
+09:44:12.870 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:44:12.895 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:44:12.895 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:44:13.311 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:44:13.341 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:44:13.601 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:44:13.889 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+09:44:13.929 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+09:44:13.940 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path '/'
+09:44:13.955 [main] INFO  com.edmar.cadastro.CadastroEventos - Started CadastroEventos in 2.793 seconds (process running for 3.015)
+09:44:13.957 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Iniciando execução de eventos de compromissos via @Scheduled
+09:44:14.058 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Enviando evento de compromisso com ID 6238
+09:44:14.089 [scheduling-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/enviar/msg/compromisso": Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.postForObject(RestTemplate.java:507)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.lambda$enviarEventos$11(EnviaEventoCompromissoUseCaseImpl.java:123)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.enviarEventos(EnviaEventoCompromissoUseCaseImpl.java:107)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.lambda$processarEventos$9(EnviaEventoCompromissoUseCaseImpl.java:96)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.processarEventos(EnviaEventoCompromissoUseCaseImpl.java:96)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.executarAgendamento(EnviaEventoCompromissoUseCaseImpl.java:38)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:579)
+	at java.base/sun.nio.ch.Net.connect(Net.java:568)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:593)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/java.net.Socket.connect(Socket.java:583)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:281)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1309)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1057)
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	... 24 common frames omitted
+09:44:48.874 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:44:48.878 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:44:48.897 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:44:50.195 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+09:44:50.223 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 47299 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+09:44:50.224 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+09:44:50.714 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:44:50.745 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 4 JPA repository interfaces.
+09:44:51.098 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+09:44:51.103 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+09:44:51.104 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:44:51.104 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+09:44:51.142 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:44:51.143 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 891 ms
+09:44:51.301 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:44:51.326 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+09:44:51.342 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:44:51.463 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:44:51.475 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:44:51.628 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2052f095
+09:44:51.629 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:44:51.650 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:44:51.650 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:44:52.063 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:44:52.094 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:44:52.371 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:44:52.652 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+09:44:52.689 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+09:44:52.699 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path '/'
+09:44:52.710 [main] INFO  com.edmar.cadastro.CadastroEventos - Started CadastroEventos in 2.814 seconds (process running for 3.022)
+09:44:52.712 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Iniciando execução de eventos de compromissos via @Scheduled
+09:44:52.807 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Enviando evento de compromisso com ID 6238
+09:44:53.891 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Processamento de compromissos finalizado.
+09:46:48.902 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:46:48.909 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:46:48.934 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+18:24:55.644 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+18:24:55.668 [main] INFO  com.edmar.cadastro.CadastroEventos - Starting CadastroEventos using Java 17.0.10 with PID 25048 (/Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos/target/classes started by edmarsr in /Users/edmarsr/programacao/IdeaProjects/projeto-cadastro-eventos)
+18:24:55.668 [main] INFO  com.edmar.cadastro.CadastroEventos - No active profile set, falling back to 1 default profile: "default"
+18:24:56.154 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+18:24:56.188 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 4 JPA repository interfaces.
+18:24:56.569 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+18:24:56.574 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+18:24:56.575 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+18:24:56.575 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+18:24:56.611 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+18:24:56.612 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 924 ms
+18:24:56.785 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+18:24:56.828 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+18:24:56.850 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+18:24:56.999 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+18:24:57.019 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+18:24:57.403 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6968bb65
+18:24:57.405 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+18:24:57.494 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+18:24:57.495 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+18:24:58.237 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+18:24:58.297 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18:24:58.618 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+18:24:59.016 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+18:24:59.053 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+18:24:59.065 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path '/'
+18:24:59.081 [main] INFO  com.edmar.cadastro.CadastroEventos - Started CadastroEventos in 3.676 seconds (process running for 3.944)
+18:24:59.084 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Iniciando execução de eventos de compromissos via @Scheduled
+18:24:59.186 [scheduling-1] INFO  c.e.c.a.u.c.EnviaEventoCompromissoUseCaseImpl - [Cadastro-eventos] Enviando evento de compromisso com ID 6238
+18:24:59.220 [scheduling-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8081/enviar/msg/compromisso": Connection refused
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.postForObject(RestTemplate.java:507)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.lambda$enviarEventos$11(EnviaEventoCompromissoUseCaseImpl.java:123)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.enviarEventos(EnviaEventoCompromissoUseCaseImpl.java:107)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.lambda$processarEventos$9(EnviaEventoCompromissoUseCaseImpl.java:96)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.processarEventos(EnviaEventoCompromissoUseCaseImpl.java:96)
+	at com.edmar.cadastro.application.usecase.compromisso.EnviaEventoCompromissoUseCaseImpl.executarAgendamento(EnviaEventoCompromissoUseCaseImpl.java:38)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:579)
+	at java.base/sun.nio.ch.Net.connect(Net.java:568)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:593)
+	at java.base/java.net.Socket.connect(Socket.java:633)
+	at java.base/java.net.Socket.connect(Socket.java:583)
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:533)
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:638)
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:281)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:386)
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:408)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1309)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1057)
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
+	... 24 common frames omitted

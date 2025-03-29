@@ -21,10 +21,10 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEvento() {
+    public Optional<List<EventoItens>> enviarEvento(String usuario) {
         LocalDate data = LocalDate.now();
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(data, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
                         .toList()
@@ -32,10 +32,10 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEventoDiaMaisUm() {
+    public Optional<List<EventoItens>> enviarEventoDiaMaisUm(String usuario) {
         LocalDate data = LocalDate.now().plusDays(1);
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(data, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
                         .toList()
@@ -43,10 +43,10 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEventoDiaMaisDois() {
+    public Optional<List<EventoItens>> enviarEventoDiaMaisDois(String usuario) {
         LocalDate data = LocalDate.now().plusDays(2);
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNull(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(data, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
                         .toList()
@@ -54,10 +54,10 @@ public class EnviarEventoPagamentoRepositoryGateway implements EnviarEventoGatew
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEventoEmAtraso() {
+    public Optional<List<EventoItens>> enviarEventoEmAtraso(String usuario) {
         LocalDate dataAtual = LocalDate.now();
 
-        return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNull(dataAtual)
+        return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(dataAtual, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensPagamentoEntityMapper::mapToEventoItens)
                         .sorted(Comparator.comparing(EventoItens::getDataEvento))

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,17 +26,17 @@ public class RecebePagamentosParaEnvioController {
     @Autowired
     private RecebePagamentosParaEnvioGateway recebePagamentosParaEnvioGateway;
 
-    @PostMapping("/pagamentos")
-    public ResponseEntity<String> recebeParaEnvio() {
-        recebePagamentosParaEnvioGateway.executarManual();
+    @PostMapping("/pagamentos/{usuario}")
+    public ResponseEntity<String> recebeParaEnvio(@PathVariable String usuario) {
+        recebePagamentosParaEnvioGateway.executarManual("Edmar");
         return ResponseEntity.ok("Comando de Pagamentos executado");
     }
 
-    @PostMapping("/pagamentos/app")
-    public ResponseEntity<String> recebeParaEnvioApp() {
+    @PostMapping("/pagamentos/app/{usuario}")
+    public ResponseEntity<String> recebeParaEnvioApp(@PathVariable String usuario) {
 
         // Obtendo os compromissos
-        List<Map<String, Object>> compromissos = recebePagamentosParaEnvioGateway.executarApp();
+        List<Map<String, Object>> compromissos = recebePagamentosParaEnvioGateway.executarApp(usuario);
 
         // Convertendo LocalDate e LocalTime para Strings antes de enviar a resposta
         List<Map<String, Object>> compromissosFormatados = compromissos.stream()
