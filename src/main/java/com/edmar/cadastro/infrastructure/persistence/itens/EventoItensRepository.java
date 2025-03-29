@@ -8,11 +8,18 @@ import java.util.Optional;
 
 public interface EventoItensRepository extends JpaRepository<EventoItensEntity, Long> {
 
-    Optional<List<EventoItensEntity>> findByDataEventoAndFinalizadoFalseAndValorIsNull(LocalDate dataEvento);
+    Optional<List<EventoItensEntity>> findByDataEventoAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(LocalDate dataEvento, String usuario);
+    //Optional<List<EventoItensEntity>> findByDataEventoAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(LocalDate dataEvento, String usuario);
 
-    Optional<List<EventoItensEntity>> findByDataEventoBeforeAndFinalizadoFalseAndValorIsNull(LocalDate dataAtual);
+    Optional<List<EventoItensEntity>> findByDataEventoBeforeAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(LocalDate dataAtual, String usuario);
+    //Optional<List<EventoItensEntity>> findByDataEventoBeforeAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(LocalDate dataAtual, String usuario);
 
-    Optional<List<EventoItensEntity>> findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNull(LocalDate dataAtual);
 
-    Optional<List<EventoItensEntity>> findByDataEventoAndFinalizadoFalseAndHorarioIsNull(LocalDate dataAtual);
+    Optional<List<EventoItensEntity>> findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(LocalDate dataAtual, String usuario);
+    //Optional<List<EventoItensEntity>> findByDataEventoBeforeAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(LocalDate dataAtual, String usuario);
+
+
+    Optional<List<EventoItensEntity>> findByDataEventoAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(LocalDate dataAtual, String usuario);
+    //Optional<List<EventoItensEntity>> findByDataEventoAndFinalizadoFalseAndHorarioIsNullAndUsuarioEquals(LocalDate dataAtual, String usuario);
+
 }

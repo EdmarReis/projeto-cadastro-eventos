@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface RecebePagamentosParaEnvioGateway {
 
-    void executarManual();
+    void executarManual(String usuario);
 
-    List<Map<String, Object>> executarApp();
+    List<Map<String, Object>> executarApp(String usuario);
 }

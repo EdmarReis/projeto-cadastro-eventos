@@ -35,23 +35,23 @@ public class EnviaEventoCompromissoUseCaseImpl implements RecebeCompromissoParaE
     @Scheduled(fixedRate = 14400000)
     public void executarAgendamento() throws JsonProcessingException {
         log.info("[Cadastro-eventos] Iniciando execução de eventos de compromissos via @Scheduled");
-        processarEventos();
+        processarEventos("Edmar");
     }
 
     @Override
-    public void executarManual() {
+    public void executarManual(String usuario) {
         log.info("[Cadastro-eventos] Iniciando execução de eventos de compromissos manual");
-        processarEventos();
+        processarEventos(usuario);
     }
 
     @Override
-    public List<Map<String, Object>> executarApp() {
+    public List<Map<String, Object>> executarApp(String usuario) {
         List<Map<String, Object>> allEvents = new ArrayList<>();
 
-        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
-        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
+        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso(usuario);
+        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois(usuario);
 
         // Adiciona os eventos na ordem correta se estiverem presentes
         eventoOptionalEmAtraso.ifPresent(lista -> lista.forEach(evento -> allEvents.add(eventoParaMap(evento, "Evento em atraso"))));
@@ -73,12 +73,12 @@ public class EnviaEventoCompromissoUseCaseImpl implements RecebeCompromissoParaE
         return map;
     }
 
-    public void processarEventos() {
+    public void processarEventos(String usuario) {
 
-        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso();
-        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm();
-        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois();
+        Optional<List<EventoItens>> eventoOptionalEmAtraso = enviarEventoGateway.enviarEventoEmAtraso(usuario);
+        Optional<List<EventoItens>> eventoOptional = enviarEventoGateway.enviarEvento(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisUm = enviarEventoGateway.enviarEventoDiaMaisUm(usuario);
+        Optional<List<EventoItens>> eventoOptionalDiaMaisDois = enviarEventoGateway.enviarEventoDiaMaisDois(usuario);
 
         String url = "http://localhost:8081/enviar/msg/compromisso";
         HttpHeaders headers = new HttpHeaders();
@@ -90,8 +90,8 @@ public class EnviaEventoCompromissoUseCaseImpl implements RecebeCompromissoParaE
         eventoOptionalEmAtraso.ifPresent(eventos -> enviarEventos(eventos, "Compromisso em atraso.",
                 url, headers, objectMapper, formatter));
 
-        eventoOptional.ifPresent(eventos -> enviarEventos(eventos, "Compromisso para hoje.",
-                url, headers, objectMapper, formatter));
+        //eventoOptional.ifPresent(eventos -> enviarEventos(eventos, "Compromisso para hoje.",
+                //url, headers, objectMapper, formatter));
 
         eventoOptionalDiaMaisUm.ifPresent(eventos -> enviarEventos(eventos, "Compromisso para amanhã.",
                 url, headers, objectMapper, formatter));

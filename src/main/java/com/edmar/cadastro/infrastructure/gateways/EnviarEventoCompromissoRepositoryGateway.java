@@ -23,10 +23,10 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
 
 
     @Override
-    public Optional<List<EventoItens>> enviarEvento() {
+    public Optional<List<EventoItens>> enviarEvento(String usuario) {
         LocalDate data = LocalDate.now();
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(data, usuario)
 
                 .map(lista -> lista.stream()
                         .map(eventoItensCompromissoEntityMapper::mapToEventoItens) // Converte cada entidade
@@ -35,10 +35,10 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEventoDiaMaisUm() {
+    public Optional<List<EventoItens>> enviarEventoDiaMaisUm(String usuario) {
         LocalDate data = LocalDate.now().plusDays(1);
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(data, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensCompromissoEntityMapper::mapToEventoItens) // Converte cada entidade
                         .toList() // Coleta em uma nova lista
@@ -46,10 +46,10 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEventoDiaMaisDois() {
+    public Optional<List<EventoItens>> enviarEventoDiaMaisDois(String usuario) {
         LocalDate data = LocalDate.now().plusDays(2);
 
-        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNull(data)
+        return eventoItensRepository.findByDataEventoAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(data, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensCompromissoEntityMapper::mapToEventoItens)
                         .toList()
@@ -57,10 +57,10 @@ public class EnviarEventoCompromissoRepositoryGateway implements EnviarEventoGat
     }
 
     @Override
-    public Optional<List<EventoItens>> enviarEventoEmAtraso() {
+    public Optional<List<EventoItens>> enviarEventoEmAtraso(String usuario) {
         LocalDate dataAtual = LocalDate.now();
 
-        return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndValorIsNull(dataAtual)
+        return eventoItensRepository.findByDataEventoBeforeAndFinalizadoFalseAndValorIsNullAndUsuarioEquals(dataAtual, usuario)
                 .map(lista -> lista.stream()
                         .map(eventoItensCompromissoEntityMapper::mapToEventoItens)
                         .sorted(Comparator.comparing(EventoItens::getDataEvento))
